@@ -1,0 +1,15 @@
+---
+- name: Check docker installed
+  command: "which docker"
+  register: docker_installed
+  ignore_errors: true
+
+- name: Install docker
+  shell: "curl -sSL https://get.docker.com | sh"
+  when: docker_installed.rc != 0
+
+- name: Append user to docker group
+  user: 
+    name: "{{ ansible_ssh_user }}"
+    groups: docker
+    append: yes

@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+  vars_prompt:
+    - name: "ssh_public_key_file"
+      default: ~/.ssh/id_rsa.pub
+  tasks:
+    - name: Set authorized key from github
+      authorized_key:
+        user: "{{ ansible_ssh_user }}"
+        state: present
+        key: https://github.com/damirm.keys
+
+    - name: Set authorized key from file
+      authorized_key:
+        user: "{{ ansible_ssh_user }}"
+        state: present
+        key: "{{ lookup('file', ssh_public_key_file) }}"
