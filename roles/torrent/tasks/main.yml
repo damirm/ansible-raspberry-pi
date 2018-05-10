@@ -1,0 +1,15 @@
+---
+- name: Install transmission
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - transmission-daemon
+    - transmission-cli
+
+# - name: Run monitorrent
+#   docker_container:
+#     name: monitorrent
+#     image: werwolfby/armhf-alpine-monitorrent
+#     volumes:
+#       - "{{ monitorrent_db_path }}:/var/www/monitorrent/monitorrent.db"

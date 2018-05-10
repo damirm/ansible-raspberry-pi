@@ -13,3 +13,7 @@
     name: "{{ ansible_ssh_user }}"
     groups: docker
     append: yes
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose
