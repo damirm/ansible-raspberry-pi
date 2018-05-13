@@ -1,2 +1,3 @@
 ---
+- include: dhcpcd.yml
 - include: docker.yml

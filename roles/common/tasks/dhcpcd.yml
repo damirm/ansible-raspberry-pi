@@ -1,0 +1,8 @@
+---
+- name: Setup static ip
+  blockinfile:
+    path: /etc/dhcpcd.conf
+    block: |
+      interface wlan0
+      static ip_address={{ static_ip }}/24
+      static routers=192.168.1.1
